@@ -1,4 +1,3 @@
-import 'dart:html';
 
 import 'package:flutter/material.dart';
 
@@ -17,6 +16,10 @@ class MyApp extends StatelessWidget {
         ),
         body: HomePage(),
       ),
+      initialRoute: '/',
+      routes: {
+        '/page2': (context) => Page2(),
+      },
     );
   }
 }
@@ -26,10 +29,31 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: ElevatedButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pushNamed(context, '/page2');
+        },
         child: Text("Move to Page 2"),
       ),
     );
   }
 }
 
+class Page2 extends StatelessWidget {
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text("Go Back"),
+      centerTitle: true,
+      ),
+      body: Center(
+        child: ElevatedButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          child: Text("Go Back"),
+        ),
+      ),
+    );
+  }
+}
